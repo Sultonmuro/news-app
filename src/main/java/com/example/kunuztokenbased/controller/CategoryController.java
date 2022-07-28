@@ -8,6 +8,8 @@ import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/category")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class CategoryController {
         return ResponseEntity.ok(read);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> edit(@RequestBody Long id){
+    public ResponseEntity<?> edit(@RequestBody Long id,@RequestBody  @Valid  Category category){
         ApiResponse<?> edit = categoryService.edit(id);
         return ResponseEntity.status(edit.isSuccess() ? 202 :  404 ).body(edit);
     }

@@ -1,6 +1,7 @@
 package com.example.kunuztokenbased.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity(name = "comment")
 
 public class Comment {

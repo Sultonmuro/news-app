@@ -20,12 +20,12 @@ public class UserService {
 return ApiResponse.builder().message("Read All!!").success(true).data(all).build();
     }
 
-    public ApiResponse<?> edit(Long id,UserDto userDto) {
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("user", "id", id));
-   user.setPhone(userDto.getPhone());
-   user.setPassword(userDto.getPassword());
-   user.setName(userDto.getName());
-   user.setAge(userDto.getAge());
+    public ApiResponse<?> edit(Long id, User user) {
+        User user1 = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("user", "id", id));
+   user.setPhone(user1.getPhone());
+   user.setPassword(user1.getPassword());
+   user.setName(user1.getName());
+   user.setAge(user1.getAge());
         User save = userRepository.save(user);
         return    ApiResponse.builder().data(save).message("Mana").success(true).build();
     }
