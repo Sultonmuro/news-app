@@ -1,6 +1,7 @@
 package com.example.kunuztokenbased.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity(name = "article")
 
 public class Article {

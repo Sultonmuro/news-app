@@ -1,5 +1,7 @@
 package com.example.kunuztokenbased.security;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ public class JwtProvider {
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
-                .setIssuedAt(new Date())
+                .setIssuedAt(new java.util.Date())
                 .setExpiration(new Date(System.currentTimeMillis()+ Long.parseLong(ttl)))
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
@@ -36,8 +38,6 @@ public class JwtProvider {
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
-        } catch (SignatureException signatureException) {
-            System.err.println("Invalid JWT signature");
         } catch (Exception exception) {
             System.err.println("Nimadir xatolik bor!");
         }
@@ -47,11 +47,11 @@ public class JwtProvider {
     //
     public boolean isExpired(String token) {
         try {
-            Date expiration = Jwts.parser()
+            Date expiration = (Date) Jwts.parser()
                     .setSigningKey(secretKey)
                     .parseClaimsJws(token)
                     .getBody().getExpiration();
-            return expiration.after(new Date());
+            return expiration.after(new java.util.Date());
         } catch (Exception e) {
             return false;
         }

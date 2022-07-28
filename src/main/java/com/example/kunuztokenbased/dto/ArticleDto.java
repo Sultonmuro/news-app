@@ -13,5 +13,5 @@ public class ArticleDto {
    private  Long id;
 private String news;
    private Long category_id;
-
+private Long comment_id;
 }

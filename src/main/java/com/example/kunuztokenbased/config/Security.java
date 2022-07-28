@@ -36,7 +36,7 @@ private final AuthService authService;
                         .cors().disable();
 
 
-        http.addFilterBefore((Filter) jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore( jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
 }
